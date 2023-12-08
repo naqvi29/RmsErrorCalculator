@@ -1,0 +1,33 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../images/background.jpg') center center/cover no-repeat fixed;
+    color: white;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.7); /* Adjust the alpha value for the desired level of opacity */
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.custom-container {
+    max-width: 800px;
+}
+input {
+    background: transparent !important; 
+    color: white !important; 
+}
+select{
+    background: transparent !important; 
+    color: white !important;
+}
+option{
+    color: black;
+
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAQ RMS Error Calculator</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon/icon.png">
+    
+    <!-- Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Chart Js  -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Sweet Alert2  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- link css  -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container custom-container">
+
+        <form id="form">        
+            <h2 class="my-5 text-center text-uppercase">DAQ RMS Error Calculator</h2>
+
+
+            <div class="mb-3">
+                <label for="waveform" class="form-label">Waveform:</label>
+                <select class="form-select" id="waveform">
+                    <option value="sinus" selected>Sinus</option>
+                    <option value="square">Square Wave</option>
+                    <option value="triangle">Triangle</option>
+                    <option value="sawtooth">Saw tooth</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="amplitude" class="form-label">Amplitude [V]:</label>
+                <input class="form-control" type="number" id="amplitude" step="0.01" min="0.01" max="5000.0">
+            </div>
+
+            <div class="mb-3">
+                <label for="frequency" class="form-label">Frequency [Hz]:</label>
+                <input class="form-control" type="number" id="frequency" step="0.1" min="0.1" max="100000000.0">
+            </div>
+
+            <div class="mb-3">
+                <label for="phase" class="form-label">Phase start [0&#176;-360&#176;]:</label>
+                <input class="form-control" type="number" id="phase" step="1" min="0" max="360">
+            </div>
+
+            <h4 class="text-uppercase text-center my-3">Data Acquisition</h4>
+
+            <div class="mb-3">
+                <label class="form-label" for="samplesPerSecond">Samples per second [Hz]:</label>
+                <input class="form-control" type="number" id="samplesPerSecond" step="1" min="1" max="1000000000">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="duration">Duration of sampling [ms]:</label>
+                <input class="form-control" type="number" id="duration" step="0.1" min="0.0" max="100000.0">
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-light" type="button" onclick="calculateRMS()">Calculate RMS</button>
+            </div>
+        
+        </form>
+
+        <div id="results" hidden class="my-3">
+            <h3 class="text-uppercase text-center">Results</h3>
+
+            <div class="mb-3">
+                <label class="form-label" for="rmsDAQ">RMS DAQ Calculation [V]:</label>
+                <input class="form-control" readonly id="rmsDAQ"></input>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="rmsError">RMS DAQ Error [%]:</label>
+                <input class="form-control" readonly id="rmsError"></input>
+            </div>
+
+            
+            <div class="mb-3">
+                <label class="form-label" for="realRMS">Real RMS one period [V]:</label>
+                <input class="form-control" readonly id="realRMS"></input>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="daqError">DAQ RMS Error [V]:</label>
+                <input class="form-control" readonly id="daqError"></input>
+            </div>
+
+            <h4 class="text-center text-uppercase">Graph Visualization</h4>
+            <canvas id="waveformChart" width="400" height="200"></canvas>
+        </div>
+    
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Main Java Script  -->
+    <script src="Js/script.js"></script>
+
+</body>
+</html>
